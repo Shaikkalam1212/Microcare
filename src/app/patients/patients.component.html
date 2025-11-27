@@ -1,0 +1,101 @@
+<!-- Registration Button -->
+<button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createModal">OT Registration</button>
+
+<!-- Modal for Registration Form -->
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createModalLabel">{{ isEditMode ? 'Edit' : 'Registration' }} Form</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Create/Edit Form inside the Modal -->
+        <form (ngSubmit)="saveRecord()">
+          <div class="row">
+            <div class="col-12 col-md-6 mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" [(ngModel)]="patientForm.name" name="name" placeholder="Enter Name" required>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+              <label for="age" class="form-label">Age</label>
+              <input type="number" class="form-control" [(ngModel)]="patientForm.age" name="age" placeholder="Enter Age" required>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+              <label for="mrNo" class="form-label">MR NO</label>
+              <input type="number" class="form-control" [(ngModel)]="patientForm.mrNo" name="mrNo" placeholder="Enter MR NO" required>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+              <label for="opNo" class="form-label">OP NO</label>
+              <input type="text" class="form-control" [(ngModel)]="patientForm.opNo" name="opNo" placeholder="Enter OP NO" required>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+              <label for="date" class="form-label">Date</label>
+              <input type="date" class="form-control" [(ngModel)]="patientForm.date" name="date" required>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+              <label for="surgery" class="form-label">Surgery</label>
+              <input type="text" class="form-control" [(ngModel)]="patientForm.surgery" name="surgery" placeholder="Enter Surgery" required>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+              <label for="surgeon" class="form-label">Surgeon</label>
+              <input type="text" class="form-control" [(ngModel)]="patientForm.surgeon" name="surgeon" placeholder="Enter Surgeon" required>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+              <label for="remarks" class="form-label">Remarks</label>
+              <input type="text" class="form-control" [(ngModel)]="patientForm.remarks" name="remarks" placeholder="Enter Remarks" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">{{ isEditMode ? 'Update' : 'Save' }} Record</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Patient Records Table -->
+<!-- Patient Records Table -->
+<div class="card mt-4">
+  <div class="card-header">
+    <h4>Patient Records</h4>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="flex-column">Name</th>
+            <th class="flex-column">Age</th>
+            <th class="flex-column">MR NO</th>
+            <th class="flex-column">OP NO</th>
+            <th class="flex-column">Date</th>
+            <th class="flex-column">Surgery</th>
+            <th class="flex-column">Surgeon</th>
+            <th class="flex-column">Actions</th>
+            <th class="flex-column">Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let record of patientRecords; let i = index">
+            <td>{{ record.name }}</td>
+            <td>{{ record.age }}</td>
+            <td>{{ record.mrNo }}</td>
+            <td>{{ record.opNo }}</td>
+            <td>{{ record.date }}</td>
+            <td>{{ record.surgery }}</td>
+            <td>{{ record.surgeon }}</td>
+            <td>
+              <!-- Edit and Delete buttons in the same line -->
+              <div class="d-flex justify-content-start">
+                <button class="btn btn-warning btn-sm me-2" (click)="editRecord(record, i)">Edit</button>
+                <button class="btn btn-danger btn-sm" (click)="deleteRecord(i)">Delete</button>
+              </div>
+            </td>
+            <td>{{ record.remarks }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

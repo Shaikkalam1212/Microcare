@@ -1,0 +1,12 @@
+.image-container {
+    text-align: center; /* Center align the image */
+    margin-bottom: 30px; /* Add some spacing below the image */
+  }
+  
+  .image-container img {
+    width: 100%; /* Make the image take the full width of the container */
+    max-width: 550px; /* Set a maximum width for the image */
+    height: auto; /* Keep the aspect ratio of the image */
+    border-radius: 5px; /* Rounded corners for the image */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow around the image */
+  }
